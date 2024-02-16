@@ -1,14 +1,7 @@
 from locators import TestLocators
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import random
-import string
-
-def generate_random_email():
-    username = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
-    domain = ''.join(random.choices(string.ascii_lowercase, k=5))
-    return f"{username}@{domain}.com"
-
+from helpers import generate_random_email
 
 class TestRegistration:
 
@@ -21,8 +14,6 @@ class TestRegistration:
         button_registration = browser_chrome.find_element(*TestLocators.BUTTON_REGISTRATION)
 
         field_name.send_keys('ivan0058')
-
-        # Генерируем случайный email и вводим его в поле email
         random_email = generate_random_email()
         field_email.send_keys(random_email)
 
